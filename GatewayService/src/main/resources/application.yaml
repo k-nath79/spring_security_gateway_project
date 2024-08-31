@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: SwiggyApp
+          uri: lb://SWIGGYAPP
+          predicates:
+            - Path=/swiggy/**
+
+        - id: OrderService
+          uri: lb://ORDERSERVICE
+          predicates:
+            - Path=/order/**
+  application:
+    name: GATEWAYAPP
+
+
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/
