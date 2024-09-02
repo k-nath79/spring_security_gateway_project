@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthService {
     @Autowired
@@ -20,7 +22,7 @@ public class AuthService {
     private PasswordEncoder passwordEncoder;
 
     public ResponseEntity<?> registerUser(UserCredential user){
-        UserCredential olduser = userRepo.findByUserName(user.getUserName());
+        Optional<UserCredential> olduser = userRepo.findByUserName(user.getUserName());
 
         if(olduser == null){
             user.setPassword(passwordEncoder.encode(user.getPassword()));
