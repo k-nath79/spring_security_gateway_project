@@ -11,6 +11,13 @@ spring:
           uri: lb://ORDERSERVICE
           predicates:
             - Path=/order/**
+
+        - id: IDENTITYSERVICE
+          uri: lb://IDENTITYSERVICE
+          predicates:
+            - Path=/auth/**
+
+
   application:
     name: GATEWAYAPP
 
